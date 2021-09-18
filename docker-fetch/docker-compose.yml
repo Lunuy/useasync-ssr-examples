@@ -1,0 +1,10 @@
+version: '3'
+services:
+  nginx:
+    image: docker-fetch_nginx
+    ports:
+      - 80:80
+  api:
+    image: docker-fetch_api
+  ssr:
+    image: docker-fetch_ssr

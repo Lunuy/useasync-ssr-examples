@@ -1,0 +1,9 @@
+version: '3'
+services:
+  nginx:
+    image: nginx
+    volumes:
+      - ./client/static:/etc/nginx/static
+      - ./nginx/nginx-dev.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - 3000:80

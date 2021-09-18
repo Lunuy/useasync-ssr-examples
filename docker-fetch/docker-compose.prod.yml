@@ -1,0 +1,14 @@
+version: '3'
+services:
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+  ssr:
+    build:
+      context: ./ssr
+      dockerfile: Dockerfile
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile

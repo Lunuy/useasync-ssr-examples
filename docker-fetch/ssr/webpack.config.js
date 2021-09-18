@@ -1,7 +1,8 @@
 const path = require('path');
 const NodemonPlugin = require('nodemon-webpack-plugin');
+const webpack = require('webpack');
 
-module.exports = {
+module.exports = (env, { mode }) => ({
   entry: './src/index.tsx',
   target: 'node',
   module: {
@@ -29,6 +30,9 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
   },
   plugins: [
-    new NodemonPlugin()
+    new NodemonPlugin(),
+    new webpack.DefinePlugin({
+      API_URI: mode === 'development' ? '"http://127.0.0.1:3001"' : '"http://api"'
+    })
   ]
-};
+});

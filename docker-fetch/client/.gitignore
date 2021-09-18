@@ -1,0 +1,4 @@
+node_modules
+static/index.js
+static/index.js.LICENSE.txt
+package-lock.json

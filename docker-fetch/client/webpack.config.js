@@ -1,6 +1,7 @@
 const path = require('path');
+const webpack = require('webpack');
 
-module.exports = {
+module.exports = (env, { mode }) => ({
   entry: './src/index.tsx',
   module: {
     rules: [
@@ -18,11 +19,9 @@ module.exports = {
     filename: 'index.js',
     path: path.resolve(__dirname, 'static'),
   },
-  devServer: {
-    static: {
-      directory: path.join(__dirname, 'dist')
-    },
-    compress: true,
-    port: 3000
-  }
-};
+  plugins: [
+    new webpack.DefinePlugin({
+      API_URI: mode === 'development' ? '"http://127.0.0.1:3000/api"' : '"http://127.0.0.1/api"'
+    })
+  ]
+});

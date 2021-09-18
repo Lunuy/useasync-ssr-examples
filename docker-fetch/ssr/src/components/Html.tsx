@@ -1,6 +1,6 @@
 import { ReactHelmet } from "../../../client/src/App";
 
-export function Html({ content, helmet }: { content: string, helmet: ReactHelmet.HelmetData }) {
+export function Html({ content, helmet, caches }: { content: string, helmet: ReactHelmet.HelmetData, caches: any[] }) {
     const htmlAttrs = helmet.htmlAttributes.toComponent();
     const bodyAttrs = helmet.bodyAttributes.toComponent();
 
@@ -16,6 +16,7 @@ export function Html({ content, helmet }: { content: string, helmet: ReactHelmet
             </head>
             <body {...bodyAttrs as any}>
                 <div id="root" dangerouslySetInnerHTML={{ __html: content }} />
+                <script dangerouslySetInnerHTML={{__html: `window.__USEASYNC_SSR_CACHES__ = ${JSON.stringify(caches)}`}}></script>
                 <script src="/index.js"></script>
             </body>
         </html>
